@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Primary Colors */
+    --light-cyan: hsl(193, 38%, 86%);
+    --neon-green: hsl(150, 100%, 66%);
+
+    /* Neutral Colors */
+    --grayish-blue: hsl(217, 19%, 38%);
+    --dark-grayish-blue: hsl(217, 19%, 24%);
+    --dark-blue: hsl(218, 23%, 16%);
+}
+
+body {
+    position: relative;
+    font-family: 'Manrope', sans-serif;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dark-blue);
+}
+
+.container {
+    gap: 30px;
+    position: relative;
+    width: 40%;
+    background-color: var(--dark-grayish-blue);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: 8px;
+    padding-block: 40px;
+    padding-inline: 40px;
+}
+
+.patterns {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.patterns img {
+    width: 100%;
+}
+
+.adviceCounter {
+    font-size: 12px;
+    letter-spacing: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--neon-green);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.advice {
+    color: var(--light-cyan);
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.dice {
+    width: 100%;
+    position: absolute;
+    bottom: -35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.diceCover {
+    background-color: var(--neon-green);
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; /* Makes it look clickable */
+    transition: transform 0.5s ease;
+}
+
+.diceCover:hover {
+    box-shadow: 0px 0px 20px var(--neon-green);
+}
+
+.diceCover:active {
+    box-shadow: none;
+}
+
+/* Dice spin effect */
+.diceCover.clicked .diceImg {
+    animation: spin 0.5s ease forwards; /* Spins the dice */
+}
+
+.diceCover .diceImg {
+    /* width: 50%; */
+}
+.mobPattern {
+    display: none;
+}
+/* Loader animation */
+.custom-loader {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: none;
+    place-items: center;
+    border-radius: 50%;
+    background-color: transparent;
+    animation: rotateLoader 2s infinite linear;
+}
+
+@keyframes rotateLoader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Loader's background animation */
+@keyframes moveBackground {
+    0% {
+        background-position: 50% 0, 50% 100%, 100% 50%, 0 50%;
+    }
+
+    50% {
+        background-position: 50% 100%, 50% 0, 100% 50%, 0 50%;
+    }
+
+    100% {
+        background-position: 50% 0, 50% 100%, 100% 50%, 0 50%;
+    }
+}
+
+.custom-loader::before,
+.custom-loader::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(farthest-side, #d3f46d 92%, #0000);
+    background: var(--c, radial-gradient(farthest-side, #d3f46d 92%, #0000)) 50% 0,
+        var(--c, radial-gradient(farthest-side, #d3f46d 92%, #0000)) 50% 100%,
+        var(--c, radial-gradient(farthest-side, #d3f46d 92%, #0000)) 100% 50%,
+        var(--c, radial-gradient(farthest-side, #d3f46d 92%, #0000)) 0 50%;
+    background-size: 6px 6px;
+    background-repeat: no-repeat;
+    animation: moveBackground 1s infinite linear;
+}
+
+/* Styling for attribution */
+.attribution {
+    position: fixed;
+    bottom: 30px;
+    color: white;
+    font-size: .8rem;
+}
+
+.attribution a {
+    text-decoration: none;
+    color: var(--neon-green);
+}
+
+.attribution a:hover {
+    text-shadow: 0px 0px 5px var(--neon-green);
+}
+
+/* Responsive design */
+@media (max-width: 540px) {
+    .container {
+        width: 90%;
+    }
+
+    .deskPattern {
+        display: none;
+    }
+
+    .mobPattern {
+        display: block;
+    }
+}
+
+@media (min-width: 767px) and (max-width: 1025px) {
+    .container {
+        width: 60%;
+    }
+}
+
+/* Animation for the dice spin */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
